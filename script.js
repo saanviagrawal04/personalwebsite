@@ -62,34 +62,86 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // Form submission handling
-const contactForm = document.querySelector('.contact-form form');
-if (contactForm) {
-    contactForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        
-        // Get form data
-        const formData = new FormData(contactForm);
-        const name = contactForm.querySelector('input[type="text"]').value;
-        const email = contactForm.querySelector('input[type="email"]').value;
-        const message = contactForm.querySelector('textarea').value;
-        
-        // Simple validation
-        if (!name || !email || !message) {
-            alert('Please fill in all fields');
-            return;
-        }
-        
-        // Email validation
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailRegex.test(email)) {
-            alert('Please enter a valid email address');
-            return;
-        }
-        
-        // Simulate form submission (in a real app, you'd send this to a server)
-        alert('Thank you for your message! I\'ll get back to you soon.');
-        contactForm.reset();
-    });
+function handleContactSubmit(event) {
+    event.preventDefault();
+    
+    // Get form data
+    const name = document.getElementById('contactName').value;
+    const email = document.getElementById('contactEmail').value;
+    const message = document.getElementById('contactMessage').value;
+    
+    // Simple validation
+    if (!name || !email || !message) {
+        alert('Please fill in all fields');
+        return;
+    }
+    
+    // Email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+        alert('Please enter a valid email address');
+        return;
+    }
+    
+    // Create email content
+    const subject = `New Message from ${name} - Personal Website Contact`;
+    const body = `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`;
+    
+    // Create mailto link
+    const mailtoLink = `mailto:agrawalsaanvi04@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    
+    // Open email client
+    window.open(mailtoLink);
+    
+    // Show success message
+    alert('Thank you for your message! Your email client should open with a pre-filled message. If it doesn\'t open automatically, please email me at agrawalsaanvi04@gmail.com');
+    
+    // Reset form
+    document.getElementById('contactForm').reset();
+}
+
+// Slider functionality for events section
+let slideIndexes = [0, 0]; // Track current slide for each slider
+
+function changeSlide(direction, sliderIndex) {
+    const sliderContainer = document.querySelectorAll('.slider-container')[sliderIndex];
+    const slides = sliderContainer.querySelectorAll('.slider-image');
+    const dots = sliderContainer.querySelectorAll('.dot');
+    
+    // Remove active class from current slide and dot
+    slides[slideIndexes[sliderIndex]].classList.remove('active');
+    dots[slideIndexes[sliderIndex]].classList.remove('active');
+    
+    // Update slide index
+    slideIndexes[sliderIndex] += direction;
+    
+    // Handle wrap-around
+    if (slideIndexes[sliderIndex] >= slides.length) {
+        slideIndexes[sliderIndex] = 0;
+    } else if (slideIndexes[sliderIndex] < 0) {
+        slideIndexes[sliderIndex] = slides.length - 1;
+    }
+    
+    // Add active class to new slide and dot
+    slides[slideIndexes[sliderIndex]].classList.add('active');
+    dots[slideIndexes[sliderIndex]].classList.add('active');
+}
+
+function currentSlide(slideNumber, sliderIndex) {
+    const sliderContainer = document.querySelectorAll('.slider-container')[sliderIndex];
+    const slides = sliderContainer.querySelectorAll('.slider-image');
+    const dots = sliderContainer.querySelectorAll('.dot');
+    
+    // Remove active class from current slide and dot
+    slides[slideIndexes[sliderIndex]].classList.remove('active');
+    dots[slideIndexes[sliderIndex]].classList.remove('active');
+    
+    // Update slide index (convert to 0-based)
+    slideIndexes[sliderIndex] = slideNumber - 1;
+    
+    // Add active class to new slide and dot
+    slides[slideIndexes[sliderIndex]].classList.add('active');
+    dots[slideIndexes[sliderIndex]].classList.add('active');
 }
 
 // Add hover effects to skill tags

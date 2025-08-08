@@ -18,6 +18,7 @@
                 <li><a href="#about" class="nav-link">About</a></li>
                 <li><a href="#experience" class="nav-link">Experience</a></li>
                 <li><a href="#activities" class="nav-link">Activities</a></li>
+                <li><a href="#events" class="nav-link">Events</a></li>
                 <li><a href="#skills" class="nav-link">Skills</a></li>
                 <li><a href="#hobbies" class="nav-link">Hobbies</a></li>
                 <li><a href="#contact" class="nav-link">Contact</a></li>
@@ -158,7 +159,7 @@
                             <p>I found myself navigating a field that was exciting, but difficult to break into. I realized that while interest in PM was growing on campus, resources and guidance were limited. I constantly ran into the same challenges: No clear roadmap for how to prepare, little visibility into real-world PM expectations, and few chances to connect with mentors or recruiters. I created ProductSpace to change that, a place where any student, from any background, could explore PM through community, events, and hands-on experiences.</p>
                         </div>
                         <div class="activity-image-large">
-                            <img src="productspace.jpeg" alt="SCUProductSpace" class="activity-photo-large">
+                            <img src="scuproductspace.png" alt="SCUProductSpace" class="activity-photo-large">
                         </div>
                     </div>
                 </div>
@@ -229,6 +230,72 @@
         </div>
     </section>
 
+    <!-- Events & Conferences Section -->
+    <section id="events" class="events">
+        <div class="container">
+            <h2 class="section-title">Events & Conferences</h2>
+            <div class="events-grid">
+                <div class="event-card">
+                    <div class="event-content">
+                        <div class="event-info">
+                            <h3>Deloitte National Leadership Conference</h3>
+                            <p class="event-location">Westlake, Texas</p>
+                            <p class="event-description">A 3-day summit where I had the opportunity to learn from industry professionals, engage in workshops, and network with peers from across the country. This immersive experience provided valuable insights into leadership development and professional growth.</p>
+                        </div>
+                        <div class="event-slider">
+                            <div class="slider-container">
+                                <div class="slider-track">
+                                    <img src="dnlc1.png" alt="DNLC Conference" class="slider-image active">
+                                    <img src="dnlc2.jpg" alt="DNLC Workshop" class="slider-image">
+                                    <img src="dnlc3.jpeg" alt="DNLC Networking" class="slider-image">
+                                </div>
+                                <button class="slider-btn prev-btn" onclick="changeSlide(-1, 0)">
+                                    <i class="fas fa-chevron-left"></i>
+                                </button>
+                                <button class="slider-btn next-btn" onclick="changeSlide(1, 0)">
+                                    <i class="fas fa-chevron-right"></i>
+                                </button>
+                                <div class="slider-dots">
+                                    <span class="dot active" onclick="currentSlide(1, 0)"></span>
+                                    <span class="dot" onclick="currentSlide(2, 0)"></span>
+                                    <span class="dot" onclick="currentSlide(3, 0)"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="event-card">
+                    <div class="event-content">
+                        <div class="event-info">
+                            <h3>Accenture Student Leadership Conference</h3>
+                            <p class="event-location">Chicago, Illinois</p>
+                            <p class="event-description">A 3-day conference in Chicago where I participated in similar activities - learning from industry professionals, engaging in workshops, and networking with fellow students. This experience further enhanced my leadership skills and professional development.</p>
+                        </div>
+                        <div class="event-slider">
+                            <div class="slider-container">
+                                <div class="slider-track">
+                                    <img src="slc1.jpg" alt="SLC Conference" class="slider-image active">
+                                    <img src="slc2.jpg" alt="SLC Workshop" class="slider-image">
+                                </div>
+                                <button class="slider-btn prev-btn" onclick="changeSlide(-1, 1)">
+                                    <i class="fas fa-chevron-left"></i>
+                                </button>
+                                <button class="slider-btn next-btn" onclick="changeSlide(1, 1)">
+                                    <i class="fas fa-chevron-right"></i>
+                                </button>
+                                <div class="slider-dots">
+                                    <span class="dot active" onclick="currentSlide(1, 1)"></span>
+                                    <span class="dot" onclick="currentSlide(2, 1)"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Skills Section -->
     <section id="skills" class="skills">
         <div class="container">
@@ -255,6 +322,9 @@
                         <span class="skill-tag">Go-to-Market Planning</span>
                         <span class="skill-tag">A/B Testing</span>
                         <span class="skill-tag">Product Analytics</span>
+                        <span class="skill-tag">User Analysis</span>
+                        <span class="skill-tag">Market Research</span>
+                        <span class="skill-tag">Cross Functional Collaboration</span>
                     </div>
                 </div>
                 <div class="skill-category">
@@ -325,10 +395,6 @@
             <h2 class="section-title">Get In Touch</h2>
             <div class="contact-content">
                 <div class="contact-info">
-                    <a href="tel:510-945-7900" class="contact-item">
-                        <i class="fas fa-phone"></i>
-                        <span>510-945-7900</span>
-                    </a>
                     <a href="mailto:agrawalsaanvi04@gmail.com" class="contact-item">
                         <i class="fas fa-envelope"></i>
                         <span>agrawalsaanvi04@gmail.com</span>
@@ -347,15 +413,15 @@
                     </a>
                 </div>
                 <div class="contact-form">
-                    <form>
+                    <form id="contactForm" onsubmit="handleContactSubmit(event)">
                         <div class="form-group">
-                            <input type="text" placeholder="Your Name" required>
+                            <input type="text" id="contactName" placeholder="Your Name" required>
                         </div>
                         <div class="form-group">
-                            <input type="email" placeholder="Your Email" required>
+                            <input type="email" id="contactEmail" placeholder="Your Email" required>
                         </div>
                         <div class="form-group">
-                            <textarea placeholder="Your Message" rows="5" required></textarea>
+                            <textarea id="contactMessage" placeholder="Your Message" rows="5" required></textarea>
                         </div>
                         <button type="submit" class="btn btn-primary">Send Message</button>
                     </form>
@@ -367,7 +433,7 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2024 Saanvi Agrawal. All rights reserved.</p>
+            <p>&copy; 2025 Saanvi Agrawal. All rights reserved.</p>
         </div>
     </footer>
 
